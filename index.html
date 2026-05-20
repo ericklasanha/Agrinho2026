@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrinho 2026 - Irrigação Sustentável</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Simulador de AgroSustentável 🌾</h1>
+        <p class="subtitle">Equilíbrio entre produção e meio ambiente</p>
+        
+        <div class="form-group">
+            <label for="hectares">Tamanho da Plantação (em hectares):</label>
+            <input type="number" id="hectares" placeholder="Ex: 5" min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="metodo">Método de Irrigação:</label>
+            <select id="metodo">
+                <option value="tradicional">Aspersão Tradicional (Gasta mais)</option>
+                <option value="gotejamento">Gotejamento Eficiente (Sustentável)</option>
+            </select>
+        </div>
+
+        <button onclick="calcularImpacto()">Calcular Impacto Ambiental</button>
+
+        <div id="resultado" class="resultado-box hidden">
+            <h3>Resultado da Análise:</h3>
+            <p id="consumoAgua"></p>
+            <p id="mensagemSustentavel"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
