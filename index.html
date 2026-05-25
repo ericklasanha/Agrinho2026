@@ -3,40 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho 2026 - Milho Sustentável</title>
+    <title>Agrinho 2026 - Puzzle do Milho</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Simulador de Cultivo de Milho 🌽</h1>
-        <p class="subtitle">Selecione o método de manejo clicando em uma das imagens abaixo:</p>
+    <div class="container puzzle-container">
+        <a href="index.html" class="btn-voltar">⬅ Voltar ao Simulador</a>
+
+        <h1>Enigma do Milho 🧩</h1>
+        <p class="subtitle">Selecione as <strong>3 afirmações verdadeiras</strong> sobre a importância do milho sustentável para desbloquear o conhecimento!</p>
         
-        <div class="cards-container">
-            <div class="card" id="card-convencional" onclick="selecionarManejo('convencional')">
-                <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=400&q=80" alt="Trator aplicando agrotóxico">
-                <h3>Manejo Convencional</h3>
-                <p>Aração do solo e uso exclusivo de defensivos químicos.</p>
+        <div class="puzzle-grid">
+            <div class="puzzle-peca" id="peca1" onclick="selecionarPeca(1, true)">
+                🌽 O etanol feito de milho é um biocombustível renovável que polui muito menos que a gasolina.
+            </div>
+            
+            <div class="puzzle-peca" id="peca2" onclick="selecionarPeca(2, false)">
+                ❌ Para produzir mais milho, a única solução é desmatar novas áreas de floresta todos os anos.
             </div>
 
-            <div class="card" id="card-sustentavel" onclick="selecionarManejo('sustentavel')">
-                <img src="https://images.unsplash.com/photo-1601614392652-32a7620023ee?auto=format&fit=crop&w=400&q=80" alt="Milho saudável com plantio direto">
-                <h3>Manejo Sustentável</h3>
-                <p>Plantio Direto na palha e Controle Biológico de pragas.</p>
+            <div class="puzzle-peca" id="peca3" onclick="selecionarPeca(3, true)">
+                🌾 A palha do milho deixada no solo (Plantio Direto) vira adubo natural e protege a terra da erosão.
+            </div>
+
+            <div class="puzzle-peca" id="peca4" onclick="selecionarPeca(4, false)">
+                🚫 O milho plantado de forma sustentável perde seus nutrientes e não serve para fazer ração animal.
+            </div>
+
+            <div class="puzzle-peca" id="peca5" onclick="selecionarPeca(5, true)">
+                🌍 O milho garante a segurança alimentar, sendo a base da alimentação de aves, suínos e seres humanos.
             </div>
         </div>
 
-        <div id="resultado" class="resultado-box hidden">
-            <h3>📊 Diagnóstico da Lavoura:</h3>
-            <ul class="lista-metricas">
-                <li id="metrica-solo"></li>
-                <li id="metrica-biodiversidade"></li>
-            </ul>
-            <hr>
-            <p id="veredito"></p>
+        <p id="mensagem-erro" class="erro-texto hidden">⚠️ Ops! Essa afirmação não representa a agricultura sustentável. Tente novamente!</p>
+
+        <div id="resultado-puzzle" class="resultado-box hidden">
+            <h3 style="color: #d35400;">🏆 Espiga de Ouro Desbloqueada!</h3>
+            <p><strong>A Importância do Milho:</strong> Você acertou! O milho é um dos pilares do agronegócio. Ele não apenas alimenta o mundo, mas impulsiona o futuro verde através da produção de etanol (energia limpa) e bioplásticos. Com a tecnologia certa, equilibramos alta produção com a preservação do planeta!</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script-puzzle.js"></script>
 </body>
 </html>
