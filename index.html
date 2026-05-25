@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho 2026 - Rizicultura Sustentável</title>
+    <title>Agrinho 2026 - Milho Sustentável</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Arroz Tech Sustentável 🌾</h1>
-        <p class="subtitle">Simulador de Emissões e Consumo na Produção de Arroz</p>
+        <h1>Simulador de Cultivo de Milho 🌽</h1>
+        <p class="subtitle">Selecione o método de manejo clicando em uma das imagens abaixo:</p>
         
-        <div class="form-group">
-            <label for="hectares">Área de Plantio (em hectares):</label>
-            <input type="number" id="hectares" placeholder="Ex: 10" min="1">
-        </div>
+        <div class="cards-container">
+            <div class="card" id="card-convencional" onclick="selecionarManejo('convencional')">
+                <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=400&q=80" alt="Trator aplicando agrotóxico">
+                <h3>Manejo Convencional</h3>
+                <p>Aração do solo e uso exclusivo de defensivos químicos.</p>
+            </div>
 
-        <div class="form-group">
-            <label for="manejo">Sistema de Manejo da Água:</label>
-            <select id="manejo">
-                <option value="inundacao">Inundação Contínua (Tradicional)</option>
-                <option value="intermitente">Irrigação Intermitente (Sustentável)</option>
-            </select>
+            <div class="card" id="card-sustentavel" onclick="selecionarManejo('sustentavel')">
+                <img src="https://images.unsplash.com/photo-1601614392652-32a7620023ee?auto=format&fit=crop&w=400&q=80" alt="Milho saudável com plantio direto">
+                <h3>Manejo Sustentável</h3>
+                <p>Plantio Direto na palha e Controle Biológico de pragas.</p>
+            </div>
         </div>
-
-        <button onclick="calcularProducao()">Analisar Sustentabilidade</button>
 
         <div id="resultado" class="resultado-box hidden">
-            <h3>Relatório de Impacto:</h3>
-            <p id="infoAgua"></p>
-            <p id="infoGases"></p>
+            <h3>📊 Diagnóstico da Lavoura:</h3>
+            <ul class="lista-metricas">
+                <li id="metrica-solo"></li>
+                <li id="metrica-biodiversidade"></li>
+            </ul>
             <hr>
             <p id="veredito"></p>
         </div>

@@ -1,50 +1,37 @@
-function calcularProducao() {
-    const hectares = parseFloat(document.getElementById('hectares').value);
-    const manejo = document.getElementById('manejo').value;
-    
-    if (isNaN(hectares) || hectares <= 0) {
-        alert("Por favor, insira um número válido de hectares.");
-        return;
-    }
+function selecionarManejo(tipo) {
+    // 1. Remover a seleção (borda verde) de todos os cards
+    document.getElementById('card-convencional').classList.remove('ativo');
+    document.getElementById('card-sustentavel').classList.remove('ativo');
 
-    // Dados fictícios baseados em médias de consumo e emissão por ciclo de cultivo
-    const aguaPorHectareTradicional = 10000000; // 10 milhões de litros por ciclo/ha
-    const metanoPorHectareTradicional = 120;    // 120 kg de CH4 por ciclo/ha
+    // 2. Adicionar a borda verde no card que foi clicado
+    document.getElementById(`card-${tipo}`).classList.add('ativo');
 
-    let aguaGasta = 0;
-    let metanoEmitido = 0;
-    let economiaAgua = 0;
-    let reducaoMetano = 0;
-
-    if (manejo === 'inundacao') {
-        aguaGasta = hectares * aguaPorHectareTradicional;
-        metanoEmitido = hectares * metanoPorHectareTradicional;
-    } else {
-        // Manejo Intermitente economiza cerca de 30% de água e reduz 50% de metano
-        aguaGasta = hectares * aguaPorHectareTradicional * 0.7;
-        metanoEmitido = hectares * metanoPorHectareTradicional * 0.5;
-        
-        economiaAgua = (hectares * aguaPorHectareTradicional) - aguaGasta;
-        reducaoMetano = (hectares * metanoPorHectareTradicional) - metanoEmitido;
-    }
-
-    // Exibir o painel de resultados
+    // 3. Mostrar a caixa de resultados
     const caixaResultado = document.getElementById('resultado');
     caixaResultado.classList.remove('hidden');
 
-    // Atualizar textos na interface
-    document.getElementById('infoAgua').innerHTML = `💧 <strong>Consumo de Água:</strong> ${aguaGasta.toLocaleString('pt-BR')} litros por safra.`;
-    document.getElementById('infoGases').innerHTML = `☁️ <strong>Emissão de Metano (CH₄):</strong> ${metanoEmitido.toLocaleString('pt-BR')} kg de gases.`;
+    // 4. Pegar os elementos de texto
+    const metricaSolo = document.getElementById('metrica-solo');
+    const metricaBiodiversidade = document.getElementById('metrica-biodiversidade');
+    const veredito = document.getElementById('veredito');
 
-    const vereditoElemento = document.getElementById('veredito');
-
-    if (manejo === 'intermitente') {
-        caixaResultado.style.borderLeft = "6px solid #2e7d32";
-        vereditoElemento.style.color = "#2e7d32";
-        vereditoElemento.innerHTML = `🚀 <strong>Alta Performance Sustentável!</strong> Ao escolher o manejo intermitente, você evitou o desperdício de <strong>${economiaAgua.toLocaleString('pt-BR')} litros</strong> de água e reduziu a pegada de carbono em <strong>${reducaoMetano.toLocaleString('pt-BR')} kg de CH₄</strong>. Isso é equilíbrio real!`;
-    } else {
-        caixaResultado.style.borderLeft = "6px solid #e74c3c";
-        vereditoElemento.style.color = "#c0392b";
-        vereditoElemento.innerHTML = `⚠️ <strong>Alerta de Sustentabilidade:</strong> O método de inundação contínua mantém a produção, mas sobrecarrega o meio ambiente. Adotando a irrigação intermitente, sua fazenda pouparia <strong>${(hectares * aguaPorHectareTradicional * 0.3).toLocaleString('pt-BR')} litros</strong> de água sem perder produtividade.`;
+    // 5. Preencher os dados dependendo da imagem escolhida
+    if (tipo === 'sustentavel') {
+        caixaResultado.style.borderLeft = "6px solid #27ae60"; // Borda verde
+        
+        metricaSolo.innerHTML = "🌱 <strong>Saúde do Solo:</strong> Alta retenção de água e nutrientes, graças à palha do Plantio Direto que protege a terra do sol e da chuva forte.";
+        metricaBiodiversidade.innerHTML = "🐝 <strong>Biodiversidade:</strong> Alta. O Controle Biológico (como as vespinhas) elimina a lagarta-do-cartucho sem matar os insetos polinizadores.";
+        
+        veredito.style.color = "#27ae60";
+        veredito.innerHTML = "🏆 <strong>Equilíbrio Perfeito!</strong> Você garantiu uma alta produção de milho respeitando o meio ambiente. O solo fica rico para as próximas gerações e o custo com química diminui!";
+        
+    } else if (tipo === 'convencional') {
+        caixaResultado.style.borderLeft = "6px solid #e74c3c"; // Borda vermelha
+        
+        metricaSolo.innerHTML = "🏜️ <strong>Saúde do Solo:</strong> Baixa retenção de água. Ao arar a terra, o solo fica exposto à erosão e perde umidade rapidamente.";
+        metricaBiodiversidade.innerHTML = "⚠️ <strong>Biodiversidade:</strong> Baixa. O excesso de agrotóxicos elimina tanto as pragas quanto os insetos benéficos.";
+        
+        veredito.style.color = "#c0392b";
+        veredito.innerHTML = "📉 <strong>Alerta Ambiental:</strong> A produção acontece, mas a longo prazo o solo se esgota. É preciso aplicar cada vez mais fertilizantes químicos para manter a mesma quantidade de milho.";
     }
 }
