@@ -8,46 +8,40 @@
 </head>
 <body>
 
-    <div class="container puzzle-container">
-        <a href="index.html" class="btn-voltar">⬅ Voltar ao Simulador</a>
-
+    <div class="container">
         <h1>Enigma do Milho 🧩</h1>
-        <p class="subtitle">Selecione as <strong>3 afirmações verdadeiras</strong> sobre a importância do milho sustentável para desbloquear o conhecimento!</p>
+        <p class="subtitle">Selecione as <strong>3 afirmações verdadeiras</strong> sobre a sustentabilidade do milho para desbloquear o conhecimento!</p>
         
         <div class="puzzle-grid">
-            <div class="puzzle-peca" id="peca1" onclick="selecionarPeca(1, true)">
-                🌽 O etanol feito de milho é um biocombustível renovável que polui muito menos que a gasolina.
+            <div class="puzzle-peca" id="peca1" onclick="verificarClique(1, true)">
+                🌽 O etanol feito de milho é um biocombustível renovável que polui menos que a gasolina.
             </div>
             
-            <div class="puzzle-peca" id="peca2" onclick="selecionarPeca(2, false)">
+            <div class="puzzle-peca" id="peca2" onclick="verificarClique(2, false)">
                 ❌ Para produzir mais milho, a única solução é desmatar novas áreas de floresta todos os anos.
             </div>
 
-            <div class="puzzle-peca" id="peca3" onclick="selecionarPeca(3, true)">
+            <div class="puzzle-peca" id="peca3" onclick="verificarClique(3, true)">
                 🌾 A palha do milho deixada no solo (Plantio Direto) vira adubo natural e protege a terra da erosão.
             </div>
 
-            <div class="puzzle-peca" id="peca4" onclick="selecionarPeca(4, false)">
-                🚫 O milho plantado de forma sustentável perde seus nutrientes e não serve para fazer ração animal.
+            <div class="puzzle-peca" id="peca4" onclick="verificarClique(4, false)">
+                🚫 O milho plantado sem agrotóxicos pesados perde seus nutrientes e não serve para consumo.
             </div>
 
-            <div class="puzzle-peca" id="peca5" onclick="selecionarPeca(5, true)">
-                🌍 O milho garante a segurança alimentar, sendo a base da alimentação de aves, suínos e seres humanos.
+            <div class="puzzle-peca" id="peca5" onclick="verificarClique(5, true)">
+                🌍 O milho garante a segurança alimentar, sendo a base da alimentação de muitos animais e humanos.
             </div>
         </div>
 
-        <p id="mensagem-erro" class="erro-texto hidden">⚠️ Ops! Essa afirmação não representa a agricultura sustentável. Tente novamente!</p>
+        <p id="mensagem-erro" class="erro-texto hidden">⚠️ Ops! Essa prática não ajuda o meio ambiente. Tente outra!</p>
 
         <div id="resultado-puzzle" class="resultado-box hidden">
-            <h3 style="color: #d35400;">🏆 Espiga de Ouro Desbloqueada!</h3>
-            <p><strong>A Importância do Milho:</strong> Você acertou! O milho é um dos pilares do agronegócio. Ele não apenas alimenta o mundo, mas impulsiona o futuro verde através da produção de etanol (energia limpa) e bioplásticos. Com a tecnologia certa, equilibramos alta produção com a preservação do planeta!</p>
+            <h3 style="color: #d35400; margin-top: 0;">🏆 Espiga de Ouro Desbloqueada!</h3>
+            <p><strong>A Importância do Milho:</strong> Você acertou! O milho é um pilar do agronegócio. Com tecnologia, conseguimos alta produção para alimentar o mundo e gerar energia limpa (etanol), tudo isso em <strong>equilíbrio com o meio ambiente</strong>!</p>
         </div>
     </div>
 
-    <script src="script-puzzle.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-<hr style="margin-top: 30px;">
-<a href="puzzle.html" style="text-decoration: none;">
-    <button style="background-color: #e67e22;">🎮 Jogar o Enigma do Milho</button>
-</a>

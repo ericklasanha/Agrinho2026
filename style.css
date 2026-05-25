@@ -1,24 +1,34 @@
-/* --- ESTILOS ADICIONAIS PARA A PÁGINA DO PUZZLE --- */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #fff9e6; 
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
 
-.puzzle-container {
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     max-width: 600px;
+    width: 100%;
+    text-align: center;
 }
 
-.btn-voltar {
-    display: inline-block;
-    background-color: #ecf0f1;
-    color: #2c3e50;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    transition: background 0.3s;
+h1 {
+    color: #e67e22;
+    margin-bottom: 5px;
 }
 
-.btn-voltar:hover {
-    background-color: #bdc3c7;
+.subtitle {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
 }
 
 .puzzle-grid {
@@ -41,20 +51,38 @@
 
 .puzzle-peca:hover {
     border-color: #e67e22;
-    transform: translateX(5px); /* Dá um efeitinho de empurrar pro lado */
+    transform: translateX(5px);
 }
 
-/* Quando o usuário clica numa opção correta */
 .puzzle-peca.correta-selecionada {
     background-color: #eafaf1;
     border-color: #27ae60;
     color: #1e8449;
     font-weight: bold;
-    pointer-events: none; /* Impede de clicar de novo */
+    pointer-events: none;
+}
+
+.puzzle-peca.erro {
+    background-color: #fadbd8;
+    border-color: #e74c3c;
 }
 
 .erro-texto {
     color: #e74c3c;
     font-weight: bold;
     margin-bottom: 15px;
+}
+
+.resultado-box {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    background-color: #fdfefe;
+    border: 1px solid #e5e7e9;
+    border-left: 6px solid #e67e22;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
 }
