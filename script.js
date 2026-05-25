@@ -1,45 +1,50 @@
-function calcularImpacto() {
-    // 1. Pegar os valores digitados no HTML
+function calcularProducao() {
     const hectares = parseFloat(document.getElementById('hectares').value);
-    const metodo = document.getElementById('metodo').value;
+    const manejo = document.getElementById('manejo').value;
     
-    // Validação simples: se o usuário não digitar nada ou número menor que 1
     if (isNaN(hectares) || hectares <= 0) {
-        alert("Por favor, insira uma quantidade válida de hectares.");
+        alert("Por favor, insira um número válido de hectares.");
         return;
     }
 
-    // 2. Definir o consumo de água fictício por hectare (em litros por dia)
-    // Aspersão gasta muito mais água por conta da evaporação
-    const gastoAspersaoPorHectare = 5000; 
-    const gastoGotejamentoPorHectare = 2500; // Economiza 50% de água
+    // Dados fictícios baseados em médias de consumo e emissão por ciclo de cultivo
+    const aguaPorHectareTradicional = 10000000; // 10 milhões de litros por ciclo/ha
+    const metanoPorHectareTradicional = 120;    // 120 kg de CH4 por ciclo/ha
 
-    let consumoTotal = 0;
-    let economia = 0;
+    let aguaGasta = 0;
+    let metanoEmitido = 0;
+    let economiaAgua = 0;
+    let reducaoMetano = 0;
 
-    // 3. Fazer o cálculo baseado na escolha do usuário
-    if (metodo === 'tradicional') {
-        consumoTotal = hectares * gastoAspersaoPorHectare;
+    if (manejo === 'inundacao') {
+        aguaGasta = hectares * aguaPorHectareTradicional;
+        metanoEmitido = hectares * metanoPorHectareTradicional;
     } else {
-        consumoTotal = hectares * gastoGotejamentoPorHectare;
-        // Calcula quanto ele economizou em comparação ao método tradicional
-        economia = (hectares * gastoAspersaoPorHectare) - consumoTotal;
+        // Manejo Intermitente economiza cerca de 30% de água e reduz 50% de metano
+        aguaGasta = hectares * aguaPorHectareTradicional * 0.7;
+        metanoEmitido = hectares * metanoPorHectareTradicional * 0.5;
+        
+        economiaAgua = (hectares * aguaPorHectareTradicional) - aguaGasta;
+        reducaoMetano = (hectares * metanoPorHectareTradicional) - metanoEmitido;
     }
 
-    // 4. Mostrar a caixa de resultado que estava escondida (.hidden)
+    // Exibir o painel de resultados
     const caixaResultado = document.getElementById('resultado');
     caixaResultado.classList.remove('hidden');
 
-    // 5. Inserir os textos com os resultados na tela
-    document.getElementById('consumoAgua').innerHTML = `Consumo estimado: <strong>${consumoTotal.toLocaleString()} litros</strong> de água por dia.`;
+    // Atualizar textos na interface
+    document.getElementById('infoAgua').innerHTML = `💧 <strong>Consumo de Água:</strong> ${aguaGasta.toLocaleString('pt-BR')} litros por safra.`;
+    document.getElementById('infoGases').innerHTML = `☁️ <strong>Emissão de Metano (CH₄):</strong> ${metanoEmitido.toLocaleString('pt-BR')} kg de gases.`;
 
-    const mensagemElemento = document.getElementById('mensagemSustentavel');
-    
-    if (metodo === 'gotejamento') {
-        mensagemElemento.style.color = '#1b5e20'; // Texto verde escuro
-        mensagemElemento.innerHTML = `🌱 <strong>Excelente escolha!</strong> Ao usar o gotejamento, você economizou <strong>${economia.toLocaleString()} litros</strong> de água hoje, mantendo a alta produção e protegendo o lençol freático!`;
+    const vereditoElemento = document.getElementById('veredito');
+
+    if (manejo === 'intermitente') {
+        caixaResultado.style.borderLeft = "6px solid #2e7d32";
+        vereditoElemento.style.color = "#2e7d32";
+        vereditoElemento.innerHTML = `🚀 <strong>Alta Performance Sustentável!</strong> Ao escolher o manejo intermitente, você evitou o desperdício de <strong>${economiaAgua.toLocaleString('pt-BR')} litros</strong> de água e reduziu a pegada de carbono em <strong>${reducaoMetano.toLocaleString('pt-BR')} kg de CH₄</strong>. Isso é equilíbrio real!`;
     } else {
-        mensagemElemento.style.color = '#b71c1c'; // Texto vermelho de alerta
-        mensagemElemento.innerHTML = `⚠️ <strong>Atenção:</strong> O método tradicional gera desperdício por evaporação. Se mudasse para o gotejamento, você economizaria <strong>${(hectares * 2500).toLocaleString()} litros</strong> por dia!`;
+        caixaResultado.style.borderLeft = "6px solid #e74c3c";
+        vereditoElemento.style.color = "#c0392b";
+        vereditoElemento.innerHTML = `⚠️ <strong>Alerta de Sustentabilidade:</strong> O método de inundação contínua mantém a produção, mas sobrecarrega o meio ambiente. Adotando a irrigação intermitente, sua fazenda pouparia <strong>${(hectares * aguaPorHectareTradicional * 0.3).toLocaleString('pt-BR')} litros</strong> de água sem perder produtividade.`;
     }
 }
